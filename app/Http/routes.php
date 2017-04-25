@@ -10,7 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Grupo;
 
 Route::get('/', function () {
-    return view('vistas/build');
+    return view('index');
 });
+
+Route::get('preregistro', 'PRegController@create');
+Route::post('preregistro','PregController@store');
+
+Route::get('inscripcion', function(){
+	return view('inscripcion');
+});
+
+Route::get('grupos','PRegController@index');
+Route::post('altagrupo', 'PRegController@altag');
