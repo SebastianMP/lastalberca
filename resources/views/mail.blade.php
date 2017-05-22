@@ -1,0 +1,1 @@
+<h1>hola tu clave es {{$alumno->clave}}</h1>

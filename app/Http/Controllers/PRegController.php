@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests;
@@ -14,20 +14,57 @@ use Carbon\Carbon;
 
 class PRegController extends Controller
 {
+    public function getpdf(Request $request)
+    {
+        $mat    = $request->session()->get('matricula');
+        $data = Alumno::find($mat);
+        $date = date('Y-m-d');
+        $invoice = "2222";
+        $view =  \View::make('pdf.invoice', compact('data', 'date', 'invoice'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download('invoice.pdf');
+    }
+
+    public function thefinal(Request $request)
+    {
+        
+        $request->session()->forget('matricula');
+        return view('final');
+    }
+    public function verify(Request $request)
+    {  
+
+        $mat    = $request->session()->get('matricula');
+        $alumno= Alumno::find($mat);
+        if($alumno->clave == $request->clave)
+        {
+            $alumno->status=1;
+            $alumno->save();
+            return redirect('final');
+
+        }
+        else
+            return "clave incorrecta";
+    }
+
+
     public function altag(Request $request)
     {
         
         $alumno = Alumno::find($request->alumno);
         $grupo  =  Grupo::find($request->grupo);
-
         $alumno->id_grupo = $request->grupo;
         $alumno->save();
-
-        $grupo->capacidad= 
-        $grupo->capacidad - Alumno::where('id_grupo', $request->grupo)
+        $grupo->capacidad= 20 - Alumno::where('id_grupo', $request->grupo)
                                                             ->count();
 
         $grupo->save();
+        Mail::send('mail',compact('alumno'), function($m) use ($alumno)
+            {
+                $m->from('albercaipn@ipn.com', 'Albercaipn.com');
+                $m->to($alumno->email, $alumno->nombre)->subject('activa tu cuenta');
+            });
         return view('ok');
     }
     /**
@@ -60,23 +97,24 @@ class PRegController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $dir = "$request->calle $request->numero $request->colonia";
+    {   
+        $this->validate( request(),[
+            'boleta'=>['unique:alumnos,matricula']
+            ] );
+
         Alumno::create(
             [
             "boleta"            =>  $request->boleta,
-            "matricula"         =>  ($request->boleta)+"NAT",
+            "matricula"         =>  $request->boleta,
+            "escuela"           =>  $request->escuela,
             "nombres"           =>  $request->nombre,
             "appat"             =>  $request->appat,
             "apmat"             =>  $request->apmat,
             "fechanacimiento"   =>  $request->date,
-            "semestre"          =>  $request->semestre,
-            "direccion"         =>  $dir,
-            "tel_fijo"          =>  $request->tel,
+            "tel"               =>  $request->tel,
             "email"             =>  $request->mail,
-            "estatura"          =>  $request->altura,
-            "tiposangre"        =>  $request->sangre,
-            "peso"              =>  $request->peso
+            "clave"             =>  str_random(10),
+            "estatus"           => 0,
             ]);
 
         $idalum= $request->boleta+"NAT";
@@ -85,49 +123,5 @@ class PRegController extends Controller
 
         return redirect('grupos');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        
-    }
+    
 }

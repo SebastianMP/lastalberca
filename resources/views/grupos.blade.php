@@ -1,83 +1,29 @@
 @extends('layouts.principal')
 @section('content')
 
-<div class="col-xs-12">
-  <h2>Grupos</h2>
-  <div class="table-responsive">
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Grupo</th>
-        <th>Tipo Curso</th>
-        <th>Periodo</th>
-        <th>Capacidad</th>
-        <th>Entrenador</th>
-        <th>Dias habiles</th>
-        <th>Inscribir</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="container ">
+<h2>Grupos</h2>
+<div class="w3-row-padding w3-margin-top">
+  
      @foreach($groups as $grupo)
-
-     @if($grupo->capacidad == 0)
-      <tr  class="danger">
-      @else
-        <tr>
-      @endif
-        <td>
-            <div class="form-group">
-              <br><label for="horario">{{$grupo->idGrupo}}</label><br>
-            </div>
-        </td>
-        <td>
-          <div class="form-group">
-            <br><label for="horario">{{$grupo->tipoCurso}}</label><br>
-          </div>
-        </td>
-         <td>
-          <div class="form-group">
-            <br><label for="horario">{{$grupo->periodo}}</label><br>
-          </div>
-        </td>
-         <td>
-          <div class="form-group">
-            <br><label for="horario">{{$grupo->capacidad}}</label><br>
-          </div>
-        </td>
-         <td>
-          <div class="form-group">
-            <br><label for="horario">{{$grupo->coach}}</label><br>
-          </div>
-        </td>
-         <td>
-          <div class="form-group">
-            <br><label for="horario">{{$grupo->diasHabiles}}</label><br>
-          </div>
-         </td>
-         <td>
-          <div class="form-group">
-          @if($grupo->capacidad == 0)
-            <br>
-              Sin Cupo
-            <br>
-          @else
-            <br>
-             <form action="{{url('altagrupo')}}" method="POST">
-                   {{ csrf_field() }}
-                <input type="hidden" value="{{ $grupo->idGrupo }}" name="grupo">
-                <input type="hidden" value="{{ $mat }}" name="alumno">
-                <button type="submit" class="btn btn-primary">Inscribir</button>
-              </form>
-            <br>
-
-          @endif
-          </div>
-        </td>
-      </tr>
+  <div class="w3-third">
+    <div class="w3-card-4" style="width:100%">
+          <header class="w3-container w3-light-grey">
+            <h3>Matricula {{$grupo->idGrupo}}</h3>
+           </header>
+      <div class="w3-container">
+          <p>Tipo de curso: {{$grupo->tipoCurso}}</p>
+            <hr>
+            <img src="{{URL::asset('img/nadar.png')}}" alt="nadar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <p><button class="w3-button w3-circle w3-dark-grey">ver horario</button></p><br>
+      </div>
+    <button class="w3-button w3-block w3-dark-grey">Inscribir</button>
+  </div>
+  <br>
+  </div>
       @endforeach
-    </tbody>
-  </table>
+
+</div>
 </div>
 </div>
 @stop

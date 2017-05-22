@@ -9,22 +9,16 @@ class Alumno extends Model
     protected $table 		= "Alumnos";
     protected $primaryKey	= "matricula";
     public $incrementing	= false;
-    protected $fillable		= ['grupo_idgrupo',
-    							'matricula',
+    protected $fillable		= [
+                                'matricula',
     							'boleta',
-    							'cp',
+                                'escuela',
     							'nombres',
     							'appat',
     							'apmat',
-    							'direccion',
     							'email',
-    							'celular',
-    							'tel_fijo',
-    							'estatura',
-    							'peso',
-    							'tiposangre',
-    							'fechanacimiento',
-    							'escuela',
-    							'semestre',
-    							'id_grupo'];
+    							'tel',
+                                'clave',
+                                'status',
+    							'fechanacimiento',];
 }

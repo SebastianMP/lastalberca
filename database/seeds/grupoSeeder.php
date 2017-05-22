@@ -16,7 +16,7 @@ class grupoSeeder extends Seeder
         'idGrupo' 		=> 'G1',
         'tipoCurso'		=> 'Basico',
         'periodo'		=> 'Algun Periodo',
-        'coach'			=> 'Acuaman',
+        'coach'			=> 'Profesor 1',
         'capacidad'		=> 20,
         'diasHabiles'	=> 50
 
@@ -27,7 +27,7 @@ class grupoSeeder extends Seeder
         'idGrupo' 		=> 'G2',
         'tipoCurso'		=> 'Avanzado',
         'periodo'		=> 'Algun Periodo',
-        'coach'			=> 'Black Mantha',
+        'coach'			=> 'Profesor 2',
         'capacidad'		=> 20,
         'diasHabiles'	=> 50
 
@@ -36,8 +36,8 @@ class grupoSeeder extends Seeder
 
         'idGrupo' 		=> 'G3',
         'tipoCurso'		=> 'Basico',
-        'periodo'		=> 'Algun Periodo',
-        'coach'			=> 'Flipper',
+        'periodo'		=> 'Algun Periodo',z 
+        'coach'			=> 'Profesor 3',
         'capacidad'		=> 20,
         'diasHabiles'	=> 50
         ]);
@@ -47,9 +47,14 @@ class grupoSeeder extends Seeder
         'idGrupo' 		=> 'G4',
         'tipoCurso'		=> 'Avanzado',
         'periodo'		=> 'Algun Periodo',
-        'coach'			=> 'Sirenoman',
+        'coach'			=> 'Profesor 4',
         'capacidad'		=> 20,
         'diasHabiles'	=> 50
         ]);
     }
 }
+
+
+/*
+Numero variable grupos por semestre
+*/

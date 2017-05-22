@@ -13,7 +13,7 @@ class Convocatoria extends Model
     							"fechaApertura",
     							"fechaCierre",
     							"periodo",
-    							"fechaDocumentos",
+    							"fechaEntrega",
     							"FechaPublicacion"
     							];
     public $incrementing	= false;

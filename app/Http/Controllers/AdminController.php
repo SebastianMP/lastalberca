@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Convocatoria;
+use Carbon\Carbon;
 
-class Triallcontroller extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,8 @@ class Triallcontroller extends Controller
      */
     public function index()
     {
-        //
+        return view('adminviews/adminmain');
+
     }
 
     /**
@@ -24,9 +27,52 @@ class Triallcontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function createConvocatoria()
     {
-        //
+        return view('adminviews/createconv');
+    }
+    public function storeConvocatoria(Request $request)
+    {
+        $id= "{$request->apertura}{$request->periodo}";
+        Convocatoria::create([
+            "idConvocatoria"=>$id,
+            "fechaApertura"=>$request->apertura,
+            "fechaCierre"=>$request->cierre,
+            "periodo"=>$request->periodo,
+            "fechaEntrega"=>$request->fdoc,
+            "FechaPublicacion"=>$request->pub,
+            ]);
+       return view('adminviews/adminmain');
+    }
+
+    public function adminConvocatoria()
+    {
+        $convocatorias = Convocatoria::all();
+        return view('adminviews/adminconv', compact('convocatorias'));
+    }
+
+    public function dropConv(Request $request)
+    {
+
+        $conv= $request->convocatoria;
+        if($conv == NULL)
+        {
+            return "no hay nada";
+        }
+        foreach ($conv as $valor) {
+            $f = Convocatoria::find($valor);
+            $f->delete();
+        }
+        return view('adminviews/adminmain');
+    }
+    public function createGrupo()
+    {
+        return view('adminviews/creategrupos');
+    }
+    public function adminGrupo()
+    {
+        return "Administrar Grupos";
     }
 
     /**
@@ -37,8 +83,7 @@ class Triallcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $value = $request->session()->get('key');
-        return $value;
+        //
     }
 
     /**

@@ -1,9 +1,9 @@
 @extends('layouts.principal')
 @section('content')
-	<section class="container-fluid">
+	<section class="container">
 		<br>
 		<div class="col-md-12">
-			<div id="carousel-1" class=" carousel slide" data-ride="carousel"> 
+			<div id="carousel-1" class=" carousel slide" data-ride="carousel" > 
 				<!--  Indicadores -->
 				<ol class="carousel-indicators">
 					<li data-target="#carousel-1" data-slide-to="0" class="active"></li>
@@ -33,10 +33,8 @@
 							<h3>Natación</h3>
 						</div>
 					</div>
-
 				</div>
 				<!-- Controles -->
-
 				<a href="#carousel-1" class="left carousel-control" role="button" data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left" area-hidden="true"></span>
 					<span class="sr-only">Anterior</span>
