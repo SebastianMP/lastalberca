@@ -1,1 +1,1 @@
-<h1>hola tu clave es {{$alumno->clave}}</h1>
+<h1>hola tu clave es {{$alumno->token}}</h1>

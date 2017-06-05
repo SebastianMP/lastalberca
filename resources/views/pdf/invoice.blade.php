@@ -29,7 +29,11 @@
           </tr>
           <tr>
             <td>Nombre: </td>
-            <td>{{$data->nombres}} {{$data->appat}} {{$data->apmat}}</td>
+            <td>
+            {{$data->nombre}} 
+            {{$data->appat}} 
+            {{$data->apmat}}
+            </td>
           </tr>
           <tr>
             <td>Fecha de nacimiento</td>
@@ -41,7 +45,7 @@
           </tr>
           <tr>
             <td>Escuela</td>
-            <td>{{$data->escuela}}</td>
+            <td>{{$data->escuela_id}}</td>
           </tr>
           <tr>
             <td>Telefono</td>

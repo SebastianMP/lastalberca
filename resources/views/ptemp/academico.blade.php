@@ -16,7 +16,12 @@
     					<div class="input-group">
         					<span class="input-group-addon" id="app" v-if ="!escuela"><i  class="glyphicon glyphicon-education"></i></span>
         					<span class="input-group-addon" id="app" v-else ="escuela"><i  class="glyphicon glyphicon-ok"></i></span>
-    					<input type="text" v-model= "escuela" id="semestre" min="1" max="20" class="form-control input-sm" name="escuela">
+                            <select class="form-control" id="sel1" name="escuela" v-model= "escuela">
+                            @foreach($escuelas as $escu)
+                                    <option value="{{$escu->idEscuela}}">{{$escu->nombre}}</option>
+                            @endforeach
+                            </select>
+    					<!--<input type="text" v-model= "escuela" id="semestre" min="1" max="20" class="form-control input-sm" name="escuela">-->
     					</div>
     				</div>
 

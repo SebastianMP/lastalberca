@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Escuela extends Model
-{	
+class Entrenador extends Model
+{
 	/* Modelos y Object-Relational mapping (ORM): Eloquent
 	 * 	$table --> Define el nombre a la que el modelo hace refencia a la BD	
 	 * 	$fillable --> 'asignamientos de datos en masa' (columnas 'llenables')	
@@ -16,14 +16,9 @@ class Escuela extends Model
 	 * 	tablas si se desea quitar esta columna, tambien se tiene que definir en 
 	 *  el modelo
 	 */
-    protected $table 			= "Escuelas"; 
-    protected $fillable			= ['idEscuela','nombre'];
-    protected $primaryKey		= ['idEscuela'];
-    public 	  $incrementing		= false;
-    public 	  $timestamps 		= false;
-
-    public function alumnos()
-    {
-    	return $this->hasMany('App\Alumno');
-    }
+    protected $table 		=	"Entrenadores";
+    protected $fillable		=	['idEntrenador', 'nombre', 'apmat','appat'];
+    protected $primaryKey	=	'idEntrenador';
+    public $incrementing	= false;
+    public $timestamps 		= false;
 }

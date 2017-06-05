@@ -8,6 +8,7 @@
 	{!!Html::style('assets/css/bootstrap.css')!!}
 </head>
 <body>
+
 	<div id='app' class="container">
 <form action=""v-model="number">
   <input type="radio" name="gender" value="1" v-model="number"> 1<br>

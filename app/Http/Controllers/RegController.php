@@ -11,15 +11,15 @@ class RegController extends Controller
 {
     public function verifyID(Request $request)
     {
-
         if(Alumno::find($request->matricula))
         {
-            return "existe";
+            $request->session()->put('matricula', $request->matricula);
+            return  redirect('grupos');
         }
-        else
-            return "No Existe";
+        else{
 
-
-
+            $matricula= $request->matricula;
+            return view('registryerror/boletaerror', compact('matricula'));
+        }
     }
 }

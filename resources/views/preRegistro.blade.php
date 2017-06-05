@@ -26,10 +26,12 @@
             <!--boton -->
               @include('buttons/prbutton')           <!-- Encontrar en views/buttons/ -->
             <!--boton-->
-         </form>
+         </form>  </div>
         <div class="col-sm-2"></div>
         <template></template>
 			<br>
 		@include('vue/prvue')
-	</div>
+
+  </div>
+  </div>
 @stop

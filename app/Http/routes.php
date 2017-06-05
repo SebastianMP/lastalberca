@@ -13,6 +13,10 @@
 */
 use App\Grupo;
 use App\Convocatoria;
+use App\Dia;
+use App\Matricula;
+use App\Alumno;
+use App\Escuela;
 Route::get('/', function () {
     return view('index');
 });
@@ -42,8 +46,11 @@ Route::get('vue', function(){
 Route::get('other', function(){
 	return view('main');
 });
-
-Route::get('controlacceso',function(){
-	return "estoy en control acceso";
+Route::get('escuela', function(){
+	$alumno= Alumno::find('2011630209');
+	$escuela= Escuela::find(1);
+	dd($escuela->alumnos);
+	echo $alumno;
+	echo "<br><br>";
 
 });

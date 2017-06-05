@@ -7,18 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 class Alumno extends Model
 {
     protected $table 		= "Alumnos";
-    protected $primaryKey	= "matricula";
+    protected $primaryKey	= "boleta";
     public $incrementing	= false;
     protected $fillable		= [
-                                'matricula',
     							'boleta',
-                                'escuela',
-    							'nombres',
+                                'escuela_id',
+    							'nombre',
     							'appat',
     							'apmat',
     							'email',
     							'tel',
-                                'clave',
                                 'status',
+                                'token',
+                                'ins',
     							'fechanacimiento',];
+
+
+    public function escuela()
+    {
+         return $this->belongsTo('App\Escuela','idEscuela');
+    }
+    public function clases()
+    {
+      return $this->belongsToMany('App\Clase','Alumnos_Clases','alumno_id','clase_id');
+                     
+    }
 }

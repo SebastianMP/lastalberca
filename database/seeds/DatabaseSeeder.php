@@ -15,8 +15,12 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
-        $this->call(grupoSeeder::class);
-
+        //$this->call(grupoSeeder::class);
+        $this->call(DiasTableSeeder::class);
+        $this->call(MaticulasTableSeeder::class);
+        $this->call(EntrenadoresTableSeeder::class);
+        $this->call(ClasesTableSeeder::class);
+        $this->call(EscuelasTableSeeder::class);
         Model::reguard();
     }
 }

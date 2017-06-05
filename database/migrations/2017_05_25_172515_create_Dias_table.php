@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAlumnoGroup extends Migration
+class CreateDiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,11 @@ class AddAlumnoGroup extends Migration
      */
     public function up()
     {
-        Schema::table('Alumnos', function (Blueprint $table) {
-            $table->string('id_grupo')->nullable();
-            $table->foreign('id_grupo')->references('idGrupo')->on('Grupos');
+        Schema::create('Dias', function (Blueprint $table) 
+        {
+            $table->increments('idDia');
+            $table->string('nombre');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddAlumnoGroup extends Migration
      */
     public function down()
     {
-        Schema::table('Alumnos', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('Dias');
     }
 }

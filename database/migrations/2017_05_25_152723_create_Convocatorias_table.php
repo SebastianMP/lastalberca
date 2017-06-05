@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConvocatoriaTable extends Migration
+class CreateConvocatoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateConvocatoriaTable extends Migration
     public function up()
     {
         Schema::create('Convocatorias', function (Blueprint $table) {
-            $table->string('idConvocatoria');
-            $table->date('fechaApertura');
-            $table->date('fechaCierre');
-            $table->string('periodo');
-            $table->date('fechaEntrega');
-            $table->date('fechaPublicacion');
-            $table->primary('idConvocatoria');
+            $table->increments('idConvocatoria');
+            $table->date('fapertura');
+            $table->date('fcierre');
+            $table->date('fpublicacion');
             $table->timestamps();
         });
     }
