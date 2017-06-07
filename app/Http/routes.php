@@ -11,7 +11,7 @@
 |  alexandriav1.jl.serv.net.mx
 |
 */
-use App\Grupo;
+use App\Clase;
 use App\Convocatoria;
 use App\Dia;
 use App\Matricula;
@@ -31,7 +31,6 @@ Route::post('preregistro','PregController@store');
 Route::get('grupos','PRegController@index');
 Route::post('altagrupo', 'PRegController@altag');
 Route::post('comprobar','PRegController@verify');
-Route::get('final','PregController@thefinal');
 Route::get('getpdf','PregController@getpdf');
 //Rutas de inscripcion -->	end
 
@@ -54,3 +53,10 @@ Route::get('escuela', function(){
 	echo "<br><br>";
 
 });
+//pruebas ->ignorar este segmento, sera borrado al final
+
+Route::get('trial',function(){
+
+	$clase = Clase::find(25);
+	echo count($clase->alumnos);
+ });

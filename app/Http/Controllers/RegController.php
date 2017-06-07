@@ -13,8 +13,21 @@ class RegController extends Controller
     {
         if(Alumno::find($request->matricula))
         {
-            $request->session()->put('matricula', $request->matricula);
-            return  redirect('grupos');
+            $a= Alumno::find($request->matricula);
+            if($a->ins==1)
+            {
+                return view('ok');   
+            }elseif ($a->ins==2)
+            {
+
+
+                return view('final',compact('a'));
+            }
+            else{
+                
+                $request->session()->put('matricula', $request->matricula);
+                    return  redirect('grupos');
+                }           
         }
         else{
 
@@ -23,3 +36,4 @@ class RegController extends Controller
         }
     }
 }
+

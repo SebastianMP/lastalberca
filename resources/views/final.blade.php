@@ -10,6 +10,8 @@
 			      </div>
 			      <div class="panel-body">
 			      	<form action="{{url('getpdf')}}">
+			      	  <input type="hidden" name="boleta" value="{{$a->boleta}}">
+
 						<button type="submit" class="btn btn-primary btn-block">Descargar Ficha de preinscripcion</button>
 					</form>
 			      </div>

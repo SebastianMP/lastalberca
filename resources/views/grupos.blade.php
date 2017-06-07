@@ -27,15 +27,17 @@
             <th>Elige</th>
           </tr>
           @foreach($m->clases as $c)
+          @if($c->lugares - count($c->alumnos)>0)
           <tr>
               <td>{{$c->hinicio}}--{{$c->hfin}}</td>
-              <td>{{$c->lugares}}</td>
-              <td>  
+              <td>{{$c->lugares - count($c->alumnos)}}</td>
+              <td>
                   <div class="radio">
                       <label>  <input type="radio" name="clase" value="{{$c->idClase}}"> </label>
                   </div>
               </td>
           </tr>
+          @endif
           @endforeach
         </table>
         <input type="hidden" name="boleta" value="{{$mat}}">

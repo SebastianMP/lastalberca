@@ -19,3 +19,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Alumno::class, function (Faker\Generator $faker){
+return [
+
+    		'boleta'=>str_random(10),
+            'escuela_id'=>3,
+    		'nombre'=>$faker->name,
+    		'appat'=>str_random(10),
+    		'apmat'=>str_random(10),
+    		'email'=>$faker->email,
+    		'tel'=>str_random(10),
+            'status'=>0,
+            'token'=>1,
+            'ins'=>1,
+    		'fechanacimiento'=>'1990-02-02'
+		]
+
+});
